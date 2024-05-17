@@ -1,0 +1,36 @@
+.step-indicator.vertical {
+    width: 200px;
+}
+
+.step-indicator.horizontal {
+    display: flex;
+    justify-content: space-around;
+}
+
+.step {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.step.active .step-label,
+.step.active .step-title {
+    font-weight: bold;
+}
+
+.step.has-error .step-label {
+    color: red;
+}
+
+.step-icon {
+    margin-right: 10px;
+}
+
+.step-label {
+    flex-grow: 1;
+}
+
+.badge-danger {
+    margin-left: 10px;
+}
