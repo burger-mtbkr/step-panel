@@ -2,55 +2,82 @@ import React, { useState } from 'react';
 import StepIndicator, { Step } from './components/StepIndicator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import './App.css';
+
+const initialSteps: Step[] = Array.from({ length: 13 }, (_, i) => ({
+  id: `step${i + 1}`,
+  icon: 'bi bi-circle',
+  label: `Step ${i + 1}`,
+  title: `Title for Step ${i + 1}`,
+  hasError: false,
+  isComplete: false,
+}));
 
 const App: React.FC = () => {
-  const [activeStepId, setActiveStepId] = useState<string>('step1');
-  const [steps, setSteps] = useState<Step[]>([
-    { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false },
-    { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false },
-    { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: true },
-  ]);
+  const [steps, setSteps] = useState<Step[]>(initialSteps);
+  const [activeStepId, setActiveStepId] = useState<string | undefined>('step1');
+  const [collapsed, setCollapsed] = useState(false);
 
-  const handleStepClick = (id: string) => {
-    setActiveStepId(id);
+  const nextStep = () => {
+    const currentIndex = steps.findIndex(step => step.id === activeStepId);
+    const nextIndex = (currentIndex + 1) % steps.length;
+    setActiveStepId(steps[nextIndex].id);
   };
 
-  const toggleErrorOnStep = (id: string) => {
-    setSteps(prevSteps => {
-      const newSteps = prevSteps.map(step => 
-        step.id === id ? { ...step, hasError: !step.hasError } : step
-      );
-      return newSteps;
-    });
+  const setStepDone = (stepId: string) => {
+    setSteps(prevSteps =>
+      prevSteps.map(step =>
+        step.id === stepId ? { ...step, isComplete: true } : step
+      )
+    );
   };
 
-  const updateStepLabel = (id: string, newLabel: string) => {
-    setSteps(prevSteps => {
-      const newSteps = prevSteps.map(step =>
-        step.id === id ? { ...step, label: newLabel } : step
-      );
-      return newSteps;
-    });
+  const setStepError = (stepId: string) => {
+    setSteps(prevSteps =>
+      prevSteps.map(step =>
+        step.id === stepId ? { ...step, hasError: true } : step
+      )
+    );
+  };
+
+  const resetSteps = () => {
+    setSteps(prevSteps =>
+      prevSteps.map(step => ({
+        ...step,
+        hasError: false,
+        isComplete: false,
+      }))
+    );
+  };
+
+  const clearSelectedSteps = () => {
+    setActiveStepId(undefined);
+  };
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
   };
 
   return (
-    <div className="app">
-<      h4>Step Panel</h4>
-      <StepIndicator 
-        steps={steps} 
-        activeStepId={activeStepId} 
-        onStepClick={handleStepClick}
-        orientation="vertical" // Change to "horizontal" for horizontal layout
-      />
-      <button onClick={() => toggleErrorOnStep('step2')}>
-        Toggle Error on Step 2
-      </button>
-      <button onClick={() => setActiveStepId((prevStep) => (prevStep === 'step1' ? 'step2' : 'step1'))}>
-        Next Step
-      </button>
-      <button onClick={() => updateStepLabel('step2', 'Updated Step 2')}>
-        Update Label of Step 2
-      </button>
+    <div className="app-container">
+      <div className={`step-indicator-container ${collapsed ? 'collapsed' : ''}`}>
+        <StepIndicator
+          steps={steps}
+          activeStepId={activeStepId}
+          onStepClick={setActiveStepId}
+          orientation="vertical"
+          collapsed={collapsed}
+          onToggleCollapse={toggleCollapsed}
+        />
+      </div>
+      <div className={`content ${collapsed ? 'collapsed' : ''}`}>
+        <button onClick={nextStep}>Next Step</button>
+        <button onClick={() => setStepDone(activeStepId!)}>Set Step Done</button>
+        <button onClick={() => setStepError(activeStepId!)}>Set Step Error</button>
+        <button onClick={resetSteps}>Reset Steps</button>
+        <button onClick={clearSelectedSteps}>Clear Selected Step</button>
+        <button onClick={toggleCollapsed}>Toggle Panel</button>
+      </div>
     </div>
   );
 };

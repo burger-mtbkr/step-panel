@@ -13,7 +13,7 @@
 
 .step-indicator.vertical.collapsed {
     width: 50px;
-    background-color:rgb(236, 236, 236) !important;
+    background-color: rgb(236, 236, 236) !important;
 }
 
 .step-indicator.horizontal {
@@ -34,7 +34,6 @@
     border: none;
     font-size: 20px;
     padding: 5px;
-
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -43,12 +42,11 @@
     top: 0px;
     right: 10px;
     z-index: 1;
-    color: rgb(63, 63, 63);
-
+color: #333 !important;
 }
 
 .step-list {
-    padding-top: 20px;
+    padding-top: 30px;
     width: 100%;
 }
 
@@ -60,10 +58,10 @@
 }
 
 .step-list .list-group-item i {
-color: rgb(63, 63, 63);
+    color: rgb(63, 63, 63);
 }
 
 .active-step {
     background-color: rgb(236, 236, 236) !important;
-    border-color:rgb(236, 236, 236) !important;
+    border-color: rgb(236, 236, 236) !important;
 }

@@ -51,23 +51,35 @@ describe('StepIndicator Component', () => {
     expect(handleStepClick).toHaveBeenCalledWith('step2');
   });
 
-  test('toggles the panel when the hamburger menu is clicked (vertical orientation)', () => {
-    render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" />);
-    const toggleButton = screen.getByRole('button', { name: /toggle panel/i });
-    fireEvent.click(toggleButton);
+  test('handles undefined activeStepId', () => {
+    const handleStepClick = jest.fn();
+    render(<StepIndicator steps={steps} activeStepId={undefined} onStepClick={handleStepClick} />);
 
-    const stepIndicator = toggleButton.parentElement?.parentElement;
+    fireEvent.click(screen.getByText('Step 1'));
+    expect(handleStepClick).toHaveBeenCalledWith('step1');
+  });
+
+  test('toggles the panel when the toggle button is clicked (vertical orientation)', () => {
+    const { rerender } = render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" collapsed={false} />);
+    const toggleButton = screen.getByRole('button', { name: /toggle panel/i });
+    
+    fireEvent.click(toggleButton);
+    rerender(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" collapsed={true} />);
+    const stepIndicator = toggleButton.closest('.step-indicator');
     expect(stepIndicator).toHaveClass('collapsed');
 
     fireEvent.click(toggleButton);
+    rerender(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" collapsed={false} />);
     expect(stepIndicator).not.toHaveClass('collapsed');
   });
 
   test('hides step items when the panel is collapsed (vertical orientation)', () => {
-    render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" />);
+    const { rerender } = render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" collapsed={false} />);
     const toggleButton = screen.getByRole('button', { name: /toggle panel/i });
+    
     fireEvent.click(toggleButton);
-
+    rerender(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" collapsed={true} />);
+    
     steps.forEach(step => {
       expect(screen.queryByText(step.label)).not.toBeInTheDocument();
     });
