@@ -1,5 +1,6 @@
-import React from 'react';
-import { ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { ListGroup } from 'react-bootstrap';
+import './StepIndicator.css';
 
 export interface Step {
   id: string;
@@ -18,34 +19,43 @@ export interface StepIndicatorProps {
 }
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, activeStepId, onStepClick, orientation = 'vertical' }) => {
-  return (
-    <ListGroup horizontal={orientation === 'horizontal'}>
-      {steps.map(step => {
-        let iconClass = 'bi bi-circle';
-        if (step.hasError) {
-          iconClass = 'bi bi-exclamation-circle text-danger';
-        } else if (step.isComplete) {
-          iconClass = 'bi bi-check-circle';
-        }
+  const [collapsed, setCollapsed] = useState(false);
 
-        return (
-          <OverlayTrigger
-            key={step.id}
-            placement="top"
-            overlay={<Tooltip id={`tooltip-${step.id}`}>{step.title}</Tooltip>}
-          >
-            <ListGroup.Item
-              onClick={() => onStepClick && onStepClick(step.id)}
-              className={`${step.id === activeStepId ? 'active-step' : ''}`}
-              style={{ cursor: 'pointer' }}
-            >
-              <i className={iconClass} aria-label={`${step.label} icon`} />
-              <span className={`${step.hasError ? 'text-danger' : ''}`}>{step.label}</span>
-            </ListGroup.Item>
-          </OverlayTrigger>
-        );
-      })}
-    </ListGroup>
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
+  return (
+    <div className={`step-indicator ${collapsed ? 'collapsed' : ''}`}>
+      <button className="toggle-button" onClick={toggleCollapsed}>
+        <i className="bi bi-list"></i>
+      </button>
+      {!collapsed && (
+        <ListGroup horizontal={orientation === 'horizontal'} className="step-list">
+          {steps.map(step => {
+            let iconClass = 'bi bi-circle';
+            if (step.hasError) {
+              iconClass = 'bi bi-exclamation-circle text-danger';
+            } else if (step.isComplete) {
+              iconClass = 'bi bi-check-circle';
+            }
+
+            return (
+              <ListGroup.Item
+                key={step.id}
+                onClick={() => onStepClick && onStepClick(step.id)}
+                className={`${step.id === activeStepId ? 'active-step' : ''}`}
+                title={step.title}
+                style={{ cursor: 'pointer' }}
+              >
+                <i className={iconClass} aria-label={`${step.label} icon`} />
+                <span className={`${step.hasError ? 'text-danger' : ''} step-label`}>{step.label}</span>
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
+      )}
+    </div>
   );
 };
 

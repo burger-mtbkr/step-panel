@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -38,7 +39,6 @@ describe('StepIndicator Component', () => {
   test('applies active class to the active step', () => {
     render(<StepIndicator steps={steps} activeStepId="step2" />);
 
-    // eslint-disable-next-line testing-library/no-node-access
     const activeStep = screen.getByText('Step 2').closest('.list-group-item');
     expect(activeStep).toHaveClass('active-step');
   });
@@ -49,5 +49,27 @@ describe('StepIndicator Component', () => {
 
     fireEvent.click(screen.getByText('Step 2'));
     expect(handleStepClick).toHaveBeenCalledWith('step2');
+  });
+
+  test('toggles the panel when the hamburger menu is clicked', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" />);
+    const toggleButton = screen.getByRole('button');
+    fireEvent.click(toggleButton);
+
+    const stepIndicator = toggleButton.parentElement;
+    expect(stepIndicator).toHaveClass('collapsed');
+
+    fireEvent.click(toggleButton);
+    expect(stepIndicator).not.toHaveClass('collapsed');
+  });
+
+  test('hides step items when the panel is collapsed', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" />);
+    const toggleButton = screen.getByRole('button');
+    fireEvent.click(toggleButton);
+
+    steps.forEach(step => {
+      expect(screen.queryByText(step.label)).not.toBeInTheDocument();
+    });
   });
 });

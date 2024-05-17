@@ -1,41 +1,44 @@
-.step-indicator.vertical {
-    width: 200px;
+/* StepIndicator.css */
+.step-indicator {
+    width: 250px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    overflow: hidden;
+    transition: width 0.3s, background-color 0.3s;
 }
 
-.step-indicator.horizontal {
+.step-indicator.collapsed {
+    width: 50px;
+    background-color: lightgrey;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-list {
+    padding-top: 20px;
+}
+
+.step-list .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Adds space between icon and label */
 }
 
 .active-step {
     background-color: lightgrey !important;
     border-color: lightgrey !important;
-}
-
-.step {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.step.active .step-label,
-.step.active .step-title {
-    font-weight: bold;
-}
-
-.step.has-error .step-label {
-    color: red;
-}
-
-.step-icon {
-    margin-right: 10px;
-}
-
-.step-label {
-    flex-grow: 1;
-}
-
-.badge-danger {
-    margin-left: 10px;
 }
