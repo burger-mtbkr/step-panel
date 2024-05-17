@@ -13,7 +13,7 @@
 
 .step-indicator.vertical.collapsed {
     width: 50px;
-    background-color: rgb(234, 234, 234) !important;
+    background-color:rgb(236, 236, 236) !important;
 }
 
 .step-indicator.horizontal {
@@ -33,23 +33,22 @@
     background: none;
     border: none;
     font-size: 20px;
-    /* Adjust the font size to match the previous hamburger icon size */
     padding: 5px;
-    /* Adjust padding for better fit */
+
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 10px;
+    top: 0px;
     right: 10px;
-    /* Move the button to the top right corner */
     z-index: 1;
-    /* Ensure the button is above other elements */
+    color: rgb(63, 63, 63);
+
 }
 
 .step-list {
-    padding-top: 30px;
+    padding-top: 20px;
     width: 100%;
 }
 
@@ -57,10 +56,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    /* Adds space between icon and label */
+    color: rgb(63, 63, 63);
+}
+
+.step-list .list-group-item i {
+color: rgb(63, 63, 63);
 }
 
 .active-step {
-    background-color:rgb(234, 234, 234) !important;
-    border-color: rgb(234, 234, 234) !important;
+    background-color: rgb(236, 236, 236) !important;
+    border-color:rgb(236, 236, 236) !important;
 }

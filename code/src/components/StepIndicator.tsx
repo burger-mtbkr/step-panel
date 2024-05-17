@@ -13,7 +13,7 @@ export interface Step {
 
 export interface StepIndicatorProps {
   steps: Step[];
-  activeStepId: string;
+  activeStepId: string | undefined;
   onStepClick?: (id: string) => void;
   orientation?: 'vertical' | 'horizontal';
 }
@@ -30,7 +30,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, activeStepId, onSt
       {orientation === 'vertical' && (
         <div className="toggle-container">
           <button className="toggle-button" onClick={toggleCollapsed} aria-label="Toggle Panel">
-            <i className={`bi ${collapsed ? 'bi-arrows-expand-vertical' : 'bi-arrows-collapse-vertical'}`}></i>
+            <i className={`bi ${collapsed ? 'bi-arrow-bar-right' : 'bi-arrow-bar-left'}`}></i>
           </button>
         </div>
       )}
