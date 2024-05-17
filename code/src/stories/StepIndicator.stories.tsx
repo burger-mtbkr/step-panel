@@ -3,10 +3,11 @@ import { Meta, StoryFn } from '@storybook/react';
 import StepIndicator, { StepIndicatorProps, Step } from '../components/StepIndicator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../components/StepIndicator.css';
 
 const steps: Step[] = [
   { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false },
-  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false },
+  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: true },
   { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: true },
 ];
 
@@ -26,6 +27,7 @@ const Template: StoryFn<Partial<StepIndicatorProps>> = (args) => {
   return (
     <StepIndicator
       {...args}
+      steps={args.steps || steps}
       activeStepId={activeStepId}
       onStepClick={(id: string) => setActiveStepId(id)}
     />

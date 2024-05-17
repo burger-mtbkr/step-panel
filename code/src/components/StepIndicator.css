@@ -7,6 +7,11 @@
     justify-content: space-around;
 }
 
+.active-step {
+    background-color: lightgrey !important;
+    border-color: lightgrey !important;
+}
+
 .step {
     cursor: pointer;
     display: flex;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { ListGroup, Badge } from 'react-bootstrap';
-import './StepIndicator.css';
+import { ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 export interface Step {
   id: string;
@@ -8,38 +7,42 @@ export interface Step {
   label: string;
   title: string;
   hasError: boolean;
+  isComplete?: boolean;
 }
 
 export interface StepIndicatorProps {
   steps: Step[];
-  activeStepId: string | undefined;
+  activeStepId: string;
   onStepClick?: (id: string) => void;
   orientation?: 'vertical' | 'horizontal';
 }
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, activeStepId, onStepClick, orientation = 'vertical' }) => {
   return (
-    <ListGroup className={`step-indicator ${orientation}`}>
-      {steps.map((step) => {
-        const isActive = step.id === activeStepId;
-        const stepClass = isActive ? 'active' : '';
-        const errorClass = step.hasError ? 'has-error' : '';
-        
+    <ListGroup horizontal={orientation === 'horizontal'}>
+      {steps.map(step => {
+        let iconClass = 'bi bi-circle';
+        if (step.hasError) {
+          iconClass = 'bi bi-exclamation-circle text-danger';
+        } else if (step.isComplete) {
+          iconClass = 'bi bi-check-circle';
+        }
+
         return (
-          <ListGroup.Item 
-            key={step.id} 
-            className={`step ${stepClass} ${errorClass}`} 
-            onClick={() => onStepClick && onStepClick(step.id)}
+          <OverlayTrigger
+            key={step.id}
+            placement="top"
+            overlay={<Tooltip id={`tooltip-${step.id}`}>{step.title}</Tooltip>}
           >
-            <div className="step-icon">
-              {/* TODO Set correct icon complete | error | todo */}
-              {step.hasError ? <i className="bi bi-exclamation-circle"></i> : (isActive ? <i className="bi bi-check-circle"></i> : <i className={step.icon}></i>)}
-            </div>
-            <div className="step-label" title={step.title}>
-              {step.label}
-              {step.hasError && <Badge bg="danger">Error</Badge>}
-            </div>
-          </ListGroup.Item>
+            <ListGroup.Item
+              onClick={() => onStepClick && onStepClick(step.id)}
+              className={`${step.id === activeStepId ? 'active-step' : ''}`}
+              style={{ cursor: 'pointer' }}
+            >
+              <i className={iconClass} aria-label={`${step.label} icon`} />
+              <span className={`${step.hasError ? 'text-danger' : ''}`}>{step.label}</span>
+            </ListGroup.Item>
+          </OverlayTrigger>
         );
       })}
     </ListGroup>
