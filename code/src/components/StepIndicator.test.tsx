@@ -51,25 +51,40 @@ describe('StepIndicator Component', () => {
     expect(handleStepClick).toHaveBeenCalledWith('step2');
   });
 
-  test('toggles the panel when the hamburger menu is clicked', () => {
-    render(<StepIndicator steps={steps} activeStepId="step1" />);
-    const toggleButton = screen.getByRole('button');
+  test('toggles the panel when the hamburger menu is clicked (vertical orientation)', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" />);
+    const toggleButton = screen.getByRole('button', { name: /toggle panel/i });
     fireEvent.click(toggleButton);
 
-    const stepIndicator = toggleButton.parentElement;
+    const stepIndicator = toggleButton.parentElement?.parentElement;
     expect(stepIndicator).toHaveClass('collapsed');
 
     fireEvent.click(toggleButton);
     expect(stepIndicator).not.toHaveClass('collapsed');
   });
 
-  test('hides step items when the panel is collapsed', () => {
-    render(<StepIndicator steps={steps} activeStepId="step1" />);
-    const toggleButton = screen.getByRole('button');
+  test('hides step items when the panel is collapsed (vertical orientation)', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" orientation="vertical" />);
+    const toggleButton = screen.getByRole('button', { name: /toggle panel/i });
     fireEvent.click(toggleButton);
 
     steps.forEach(step => {
       expect(screen.queryByText(step.label)).not.toBeInTheDocument();
+    });
+  });
+
+  test('does not render collapse button in horizontal orientation', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" orientation="horizontal" />);
+    const toggleButton = screen.queryByRole('button', { name: /toggle panel/i });
+    expect(toggleButton).not.toBeInTheDocument();
+  });
+
+  test('renders step items in horizontal orientation', () => {
+    render(<StepIndicator steps={steps} activeStepId="step1" orientation="horizontal" />);
+
+    steps.forEach(step => {
+      const stepItem = screen.getByText(step.label);
+      expect(stepItem).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,5 @@
 /* StepIndicator.css */
-.step-indicator {
+.step-indicator.vertical {
     width: 250px;
     position: absolute;
     left: 0;
@@ -11,24 +11,46 @@
     transition: width 0.3s, background-color 0.3s;
 }
 
-.step-indicator.collapsed {
+.step-indicator.vertical.collapsed {
     width: 50px;
-    background-color: lightgrey;
+    background-color: rgb(234, 234, 234) !important;
+}
+
+.step-indicator.horizontal {
+    width: auto;
+    background: none;
+    border: none;
+    display: flex;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
 }
 
 .toggle-button {
     background: none;
     border: none;
-    font-size: 24px;
-    padding: 10px;
+    font-size: 20px;
+    /* Adjust the font size to match the previous hamburger icon size */
+    padding: 5px;
+    /* Adjust padding for better fit */
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* Move the button to the top right corner */
+    z-index: 1;
+    /* Ensure the button is above other elements */
 }
 
 .step-list {
-    padding-top: 20px;
+    padding-top: 30px;
+    width: 100%;
 }
 
 .step-list .list-group-item {
@@ -39,6 +61,6 @@
 }
 
 .active-step {
-    background-color: lightgrey !important;
-    border-color: lightgrey !important;
+    background-color:rgb(234, 234, 234) !important;
+    border-color: rgb(234, 234, 234) !important;
 }
