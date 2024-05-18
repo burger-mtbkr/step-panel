@@ -4,9 +4,9 @@ The `StepPanel` component is a versatile React component designed to act as a st
 
 ## Screenshots
 
-- ![horizontal](../screenshots/horizontal-layout.png)
+![vertical](./screenshots/vertical-layout.png)
 
-- ![vertical](../screenshots/vertical-layout.png)
+![horizontal](./screenshots/horizontal-layout.png)
 
 
 ## Features
@@ -99,12 +99,9 @@ Each step object in the steps array should have the following structure:
 The StepPanel component is also configured to be used with Storybook for interactive development and testing. To start Storybook, run:
 
 ```
-bash
-
 npm run storybook
 # or
 yarn storybook
-
 ```
 
 **Available Stories**
