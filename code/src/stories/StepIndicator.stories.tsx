@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import StepIndicator, { StepIndicatorProps, Step } from '../components/StepIndicator';
+import StepPanel, { StepIndicatorProps, Step } from '../components/StepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import '../components/StepIndicator.css';
+import '../components/StepPanel.css';
 
 const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   id: `step${i + 1}`,
@@ -15,8 +15,8 @@ const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
 }));
 
 export default {
-  title: 'Example/StepIndicator',
-  component: StepIndicator,
+  title: 'Example/StepPanel',
+  component: StepPanel,
   argTypes: {
     orientation: {
       control: { type: 'select', options: ['vertical', 'horizontal'] },
@@ -84,7 +84,7 @@ const Template: StoryFn<TemplateProps> = (args) => {
   }, [args.hasError, args.isComplete, args.steps]);
 
   return (
-    <StepIndicator
+    <StepPanel
       {...args}
       steps={stepsState}
       activeStepId={activeStepId}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StepIndicator, { Step } from './components/StepIndicator';
+import StepPanel, { Step } from './components/StepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
@@ -61,7 +61,7 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       <div className={`step-indicator-container ${collapsed ? 'collapsed' : ''}`}>
-        <StepIndicator
+        <StepPanel
           steps={steps}
           activeStepId={activeStepId}
           onStepClick={setActiveStepId}

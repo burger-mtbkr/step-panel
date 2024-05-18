@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
-import './StepIndicator.css';
+import './StepPanel.css';
 
 export interface Step {
   id: string;
@@ -20,7 +20,7 @@ export interface StepIndicatorProps {
   onToggleCollapse?: () => void;
 }
 
-const StepIndicator: React.FC<StepIndicatorProps> = ({
+const StepPanel: React.FC<StepIndicatorProps> = ({
   steps,
   activeStepId,
   onStepClick,
@@ -69,4 +69,4 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
   );
 };
 
-export default StepIndicator;
+export default StepPanel;

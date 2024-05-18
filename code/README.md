@@ -1,46 +1,126 @@
-# Getting Started with Create React App
+# StepPanel Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The `StepPanel` component is a versatile React component designed to act as a step or stage indicator for different sections of an online application form. It supports both vertical and horizontal orientations and provides functionality to mark steps as complete or with errors. The component is highly customizable and can be used in various scenarios.
 
-## Available Scripts
+## Screenshots
 
-In the project directory, you can run:
+- ![horizontal](../screenshots/horizontal-layout.png)
 
-### `yarn start`
+- ![vertical](../screenshots/vertical-layout.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `yarn test`
+- **Orientation**: Supports both vertical and horizontal orientations.
+- **Collapsible Panel**: Can be collapsed or expanded.
+- **Active Step**: Highlights the active step.
+- **Completion Status**: Marks steps as complete.
+- **Error State**: Marks steps with errors.
+- **Customizable Icons and Labels**: Each step can have its own icon, label, and title.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `yarn build`
+To install the `StepPanel` component, you can add it to your project by copying the component files into your project directory. Ensure you have the necessary dependencies installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install react react-bootstrap bootstrap bootstrap-icons
+# or
+yarn add react react-bootstrap bootstrap bootstrap-icons
+```
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Here's an example of how to use the StepPanel component in your application:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+import React, { useState } from 'react';
+import StepPanel, { Step } from './components/StepPanel';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-### `yarn eject`
+const steps: Step[] = [
+  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false, isComplete: false },
+  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: false },
+  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: false, isComplete: false },
+];
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const App = () => {
+  const [activeStepId, setActiveStepId] = useState<string>('step1');
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  const handleStepClick = (id: string) => {
+    setActiveStepId(id);
+  };
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  const handleToggleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  return (
+    <div>
+      <StepPanel
+        steps={steps}
+        activeStepId={activeStepId}
+        onStepClick={handleStepClick}
+        collapsed={collapsed}
+        onToggleCollapse={handleToggleCollapse}
+        orientation="vertical"
+      />
+    </div>
+  );
+};
 
-## Learn More
+export default App;
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Props
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Step**
+
+Each step object in the steps array should have the following structure:
+
+  - id (string): Unique identifier for the step.
+  - icon (string): Icon class for the step.
+  - label (string): Label for the step.
+  - title (string): Title for the step.
+  - hasError (boolean): Indicates if the step has an error.
+  - isComplete (boolean): Indicates if the step is complete.
+
+**StepPanel Props**
+
+  - steps (Step[]): Array of step objects.
+  - activeStepId (string | undefined): ID of the currently active step.
+  - onStepClick (function): Callback function when a step is clicked.
+  - collapsed (boolean): Indicates if the panel is collapsed.
+  - onToggleCollapse (function): Callback function to toggle the collapse state.
+  - orientation ('vertical' | 'horizontal'): Orientation of the step panel.
+
+## Storybook
+
+The StepPanel component is also configured to be used with Storybook for interactive development and testing. To start Storybook, run:
+
+```
+bash
+
+npm run storybook
+# or
+yarn storybook
+
+```
+
+**Available Stories**
+
+    Vertical: Displays the step panel in vertical orientation.
+    Horizontal: Displays the step panel in horizontal orientation.
+
+**Controls**
+
+    Orientation: Toggle between vertical and horizontal orientations.
+    isActive: Select the active step.
+    hasError: Toggle error state for steps.
+    isComplete: Toggle complete state for steps.
+    collapsed: Toggle the collapsed state of the panel.
+
+
+## Contributions
+
+For any contributions, please feel free to open an pull request on the project's repository.
