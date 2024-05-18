@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import StepPanel, { StepIndicatorProps, Step } from '../components/StepPanel';
+import StepPanel, { StepPanelProps, Step } from '../components/StepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../components/StepPanel.css';
@@ -42,7 +42,7 @@ export default {
   },
 } as Meta;
 
-interface TemplateProps extends StepIndicatorProps {
+interface TemplateProps extends StepPanelProps {
   isActive?: string;
   hasError?: string[];
   isComplete?: string[];

@@ -65,12 +65,12 @@ describe('StepPanel Component', () => {
     
     fireEvent.click(toggleButton);
     rerender(<StepPanel steps={steps} activeStepId="step1" orientation="vertical" collapsed={true} />);
-    const stepIndicator = toggleButton.closest('.step-indicator');
-    expect(stepIndicator).toHaveClass('collapsed');
+    const stepPanel = toggleButton.closest('.step-indicator');
+    expect(stepPanel).toHaveClass('collapsed');
 
     fireEvent.click(toggleButton);
     rerender(<StepPanel steps={steps} activeStepId="step1" orientation="vertical" collapsed={false} />);
-    expect(stepIndicator).not.toHaveClass('collapsed');
+    expect(stepPanel).not.toHaveClass('collapsed');
   });
 
   test('hides step items when the panel is collapsed (vertical orientation)', () => {

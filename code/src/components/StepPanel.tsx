@@ -11,7 +11,7 @@ export interface Step {
   isComplete?: boolean;
 }
 
-export interface StepIndicatorProps {
+export interface StepPanelProps {
   steps: Step[];
   activeStepId: string | undefined;
   onStepClick?: (id: string) => void;
@@ -20,7 +20,7 @@ export interface StepIndicatorProps {
   onToggleCollapse?: () => void;
 }
 
-const StepPanel: React.FC<StepIndicatorProps> = ({
+const StepPanel: React.FC<StepPanelProps> = ({
   steps,
   activeStepId,
   onStepClick,

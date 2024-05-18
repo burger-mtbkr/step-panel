@@ -56,13 +56,13 @@ describe('App Component', () => {
 test('toggles the panel\'s collapsed state', () => {
   render(<App />);
   const toggleButton = screen.getByText('Toggle Panel');
-  const stepIndicator = document.querySelector('.step-indicator-container');
+  const stepPanel = document.querySelector('.step-indicator-container');
 
   fireEvent.click(toggleButton);
-  expect(stepIndicator).toHaveClass('collapsed');
+  expect(stepPanel).toHaveClass('collapsed');
 
   fireEvent.click(toggleButton);
-  expect(stepIndicator).not.toHaveClass('collapsed');
+  expect(stepPanel).not.toHaveClass('collapsed');
 });
 
 
