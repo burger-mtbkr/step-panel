@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './StepPanel.css';
 
@@ -34,6 +34,10 @@ const StepPanel: React.FC<StepPanelProps> = ({
   overallTitle,
 }) => {
   const [currentActiveStepId, setCurrentActiveStepId] = useState(activeStepId);
+
+  useEffect(() => {
+    setCurrentActiveStepId(activeStepId);
+  }, [activeStepId]);
 
   const handleStepClick = (id: string) => {
     setCurrentActiveStepId(id);

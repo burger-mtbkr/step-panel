@@ -45,12 +45,20 @@ describe('StepPanel Component', () => {
     expect(step3Label).toHaveClass('text-danger');
   });
 
-  test('applies active class to the active step', () => {
-    render(<StepPanel steps={steps} activeStepId="step2" overallStatusIcon="bi-clock" overallTitle="The loan" />);
+  // test('applies active class to the active step', () => {
+  //   render(<StepPanel steps={steps} activeStepId="step2" overallStatusIcon="bi-clock" overallTitle="The loan" />);
 
-    const activeStep = screen.getByText('Step 2').closest('.list-group-item');
-    expect(activeStep).toHaveClass('active-step');
-  });
+  //   const activeStep = screen.getByText('Step 2').closest('.list-group-item');
+  //   expect(activeStep).toHaveClass('active-step');
+  // });
+
+  test('applies active class to the active step', () => {
+  render(<StepPanel steps={steps} activeStepId="step2" overallStatusIcon="bi-clock" overallTitle="The loan" />);
+
+  const activeStep = screen.getByText('Step 2').closest('.list-group-item');
+  expect(activeStep).toHaveClass('active-step');
+});
+
 
   test('calls onStepClick when a step is clicked', () => {
     const handleStepClick = jest.fn();
