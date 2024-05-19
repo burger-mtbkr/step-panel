@@ -5,7 +5,6 @@ import '@testing-library/jest-dom';
 import App from './App';
 
 describe('App Component', () => {
-
   test('iterates between steps', () => {
     render(<App />);
     const nextButton = screen.getByText('Next Step');
@@ -38,7 +37,7 @@ describe('App Component', () => {
     const resetButton = screen.getByText('Reset Steps');
     fireEvent.click(resetButton);
     const step1Icon = screen.getByLabelText('Step 1 icon');
-    expect(step1Icon).toHaveClass('bi-circle');
+    expect(step1Icon).toHaveClass('bi-clock');
     const step1Label = screen.getByText('Step 1');
     expect(step1Label).not.toHaveClass('text-danger');
   });
@@ -53,18 +52,17 @@ describe('App Component', () => {
     expect(activeSteps.length).toBe(0);
   });
 
-test('toggles the panel\'s collapsed state', () => {
-  render(<App />);
-  const toggleButton = screen.getByText('Toggle Panel');
-  const stepPanel = document.querySelector('.step-indicator-container');
+  test('toggles the panel\'s collapsed state', () => {
+    render(<App />);
+    const toggleButton = screen.getByText('Toggle Panel');
+    const stepPanel = document.querySelector('.step-indicator-container');
 
-  fireEvent.click(toggleButton);
-  expect(stepPanel).toHaveClass('collapsed');
+    fireEvent.click(toggleButton);
+    expect(stepPanel).toHaveClass('collapsed');
 
-  fireEvent.click(toggleButton);
-  expect(stepPanel).not.toHaveClass('collapsed');
-});
-
+    fireEvent.click(toggleButton);
+    expect(stepPanel).not.toHaveClass('collapsed');
+  });
 
   test('content area adjusts based on the panel\'s collapsed state', () => {
     render(<App />);

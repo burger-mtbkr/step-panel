@@ -8,7 +8,6 @@ The `StepPanel` component is a versatile React component designed to act as a st
 
 ![horizontal](./screenshots/horizontal-layout.png)
 
-
 ## Features
 
 - **Orientation**: Supports both vertical and horizontal orientations.
@@ -17,6 +16,7 @@ The `StepPanel` component is a versatile React component designed to act as a st
 - **Completion Status**: Marks steps as complete.
 - **Error State**: Marks steps with errors.
 - **Customizable Icons and Labels**: Each step can have its own icon, label, and title.
+- **Grouped Steps**: Steps can be grouped into categories for better organization.
 
 ## Installation
 
@@ -38,9 +38,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const steps: Step[] = [
-  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false, isComplete: false },
-  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: false },
-  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: false, isComplete: false },
+  { id: 'step1', icon: 'bi bi-clock', label: 'Step 1', title: 'Introduction', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step2', icon: 'bi bi-clock', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step3', icon: 'bi bi-clock', label: 'Step 3', title: 'Confirmation', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step4', icon: 'bi bi-clock', label: 'Step 4', title: 'Review', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step5', icon: 'bi bi-clock', label: 'Step 5', title: 'Finalize', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step6', icon: 'bi bi-clock', label: 'Step 6', title: 'Submit', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step7', icon: 'bi bi-clock', label: 'Step 7', title: 'Approval', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step8', icon: 'bi bi-clock', label: 'Step 8', title: 'Complete', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step9', icon: 'bi bi-clock', label: 'Step 9', title: 'Summary', hasError: false, isComplete: false, group: 'Group 3' },
 ];
 
 const App = () => {
@@ -78,21 +84,22 @@ export default App;
 
 Each step object in the steps array should have the following structure:
 
-  - id (string): Unique identifier for the step.
-  - icon (string): Icon class for the step.
-  - label (string): Label for the step.
-  - title (string): Title for the step.
-  - hasError (boolean): Indicates if the step has an error.
-  - isComplete (boolean): Indicates if the step is complete.
+  - `id` (string): Unique identifier for the step.
+  - `icon` (string): Icon class for the step.
+  - `label` (string): Label for the step.
+  - `title` (string): Title for the step.
+  - `hasError` (boolean): Indicates if the step has an error.
+  - `isComplete` (boolean): Indicates if the step is complete.
+  - `group` (string): Group name for the step.
 
 **StepPanel Props**
 
-  - steps (Step[]): Array of step objects.
-  - activeStepId (string | undefined): ID of the currently active step.
-  - onStepClick (function): Callback function when a step is clicked.
-  - collapsed (boolean): Indicates if the panel is collapsed.
-  - onToggleCollapse (function): Callback function to toggle the collapse state.
-  - orientation ('vertical' | 'horizontal'): Orientation of the step panel.
+  - `steps` (Step[]): Array of step objects.
+  - `activeStepId` (string | undefined): ID of the currently active step.
+  - `onStepClick` (function): Callback function when a step is clicked.
+  - `collapsed` (boolean): Indicates if the panel is collapsed.
+  - `onToggleCollapse` (function): Callback function to toggle the collapse state.
+  - `orientation` ('vertical' | 'horizontal'): Orientation of the step panel.
 
 ## Storybook
 

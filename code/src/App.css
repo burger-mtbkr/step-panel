@@ -1,44 +1,7 @@
-/* App.css */
+
 .app-container {
   display: flex;
   height: 100vh;
-}
-
-.step-indicator-container {
-  display: flex;
-  flex-direction: column;
-  transition: width 0.3s;
-}
-
-.step-indicator-container.collapsed {
-  width: 50px;
-}
-
-.step-indicator-container .step-indicator {
-  width: 250px;
-  height: 100%;
-  transition: width 0.3s;
-}
-
-.step-indicator-container.collapsed .step-indicator {
-  width: 50px;
-  background-color: lightgrey;
-}
-
-.toggle-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  padding: 5px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1;
-  color: lightgrey;
 }
 
 .content {
@@ -48,7 +11,7 @@
 }
 
 .step-indicator-container+.content {
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 .step-indicator-container.collapsed+.content {
