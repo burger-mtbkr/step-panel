@@ -1,31 +1,32 @@
-/* StepPanel.css */
+.step-indicator {
+    /* No background and borders */
+    background: none;
+    border: none;
+}
+
 .step-indicator.vertical {
     width: 250px;
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    background: #f8f9fa;
-    border-right: 1px solid #dee2e6;
     overflow: hidden;
-    transition: width 0.3s, background-color 0.3s;
+    transition: width 0.3s;
 }
 
 .step-indicator.vertical.collapsed {
     width: 50px;
-    background-color: rgb(236, 236, 236) !important;
 }
 
 .step-indicator.horizontal {
     width: auto;
-    background: none;
-    border: none;
     display: flex;
 }
 
 .toggle-container {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px;
 }
 
@@ -33,16 +34,15 @@
     background: none;
     border: none;
     font-size: 20px;
-    padding: 5px;
     cursor: pointer;
+    color: #575757;
+}
+
+.overall-title {
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    z-index: 1;
-    color: rgb(87, 87, 87) !important;
+    gap: 10px;
+    color: #5d6f6c;
 }
 
 .step-list {
@@ -54,14 +54,20 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgb(113, 113, 113) !important;
-}
-
-.step-list .list-group-item i {
-    color: rgb(113, 113, 113) !important;
+    color: #5d6f6c;
 }
 
 .active-step {
-    background-color: rgb(236, 236, 236) !important;
-    border-color: rgb(236, 236, 236) !important;
+    background-color: rgb(236, 236, 236);
+    border-color: rgb(236, 236, 236);
+}
+
+.group-title {
+    font-weight: bold;
+    color: #5d6f6c;
+    margin-left: 20px;
+}
+
+.text-danger {
+    color: red;
 }

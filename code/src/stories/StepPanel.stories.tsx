@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import StepPanel, { StepPanelProps, Step } from '../components/StepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import '../components/StepPanel.css';
+import './StepPanel.css';
 
 const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   id: `step${i + 1}`,
@@ -12,6 +12,7 @@ const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   title: `Title for Step ${i + 1}`,
   hasError: false,
   isComplete: false,
+  group: `Group ${Math.ceil((i + 1) / 2)}`, // Assign groups
 }));
 
 export default {
@@ -38,6 +39,12 @@ export default {
     },
     collapsed: {
       control: 'boolean',
+    },
+    overallStatusIcon: {
+      control: 'text',
+    },
+    overallTitle: {
+      control: 'text',
     },
   },
 } as Meta;
@@ -102,6 +109,8 @@ Vertical.args = {
   isActive: 'step1',
   orientation: 'vertical',
   collapsed: false,
+  overallStatusIcon: 'bi-clock',
+  overallTitle: 'The loan',
 };
 
 export const Horizontal = Template.bind({});
@@ -110,4 +119,6 @@ Horizontal.args = {
   isActive: 'step1',
   orientation: 'horizontal',
   collapsed: false,
+  overallStatusIcon: 'bi-clock',
+  overallTitle: 'The loan',
 };

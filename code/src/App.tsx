@@ -11,6 +11,7 @@ const initialSteps: Step[] = Array.from({ length: 13 }, (_, i) => ({
   title: `Title for Step ${i + 1}`,
   hasError: false,
   isComplete: false,
+  group: `Group ${Math.ceil((i + 1) / 2)}`, // Assign groups
 }));
 
 const App: React.FC = () => {
@@ -68,6 +69,8 @@ const App: React.FC = () => {
           orientation="vertical"
           collapsed={collapsed}
           onToggleCollapse={toggleCollapsed}
+          overallStatusIcon="bi-clock"
+          overallTitle="The loan"
         />
       </div>
       <div className={`content ${collapsed ? 'collapsed' : ''}`}>
