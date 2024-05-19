@@ -80,7 +80,7 @@ const StepPanel: React.FC<StepPanelProps> = ({
                   {group}
                 </div>
                 {steps.map((step) => {
-                  let iconClass = 'bi bi-circle';
+                  let iconClass = 'bi bi-clock';
                   if (step.hasError) {
                     iconClass = 'bi bi-exclamation-circle text-danger';
                   } else if (step.isComplete) {

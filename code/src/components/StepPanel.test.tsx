@@ -5,9 +5,9 @@ import '@testing-library/jest-dom';
 import StepPanel, { Step } from './StepPanel';
 
 const steps: Step[] = [
-  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false, group: 'Group 1' },
-  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: true, group: 'Group 1' },
-  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: true, group: 'Group 2' },
+  { id: 'step1', icon: 'bi bi-clock', label: 'Step 1', title: 'Introduction', hasError: false, group: 'Group 1' },
+  { id: 'step2', icon: 'bi bi-clock', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: true, group: 'Group 1' },
+  { id: 'step3', icon: 'bi bi-clock', label: 'Step 3', title: 'Confirmation', hasError: true, group: 'Group 2' },
 ];
 
 describe('StepPanel Component', () => {
@@ -32,7 +32,7 @@ describe('StepPanel Component', () => {
   test('renders correct icon classes for steps', () => {
     render(<StepPanel steps={steps} activeStepId="step1" overallStatusIcon="bi-clock" overallTitle="The loan" />);
 
-    expect(screen.getByLabelText('Step 1 icon')).toHaveClass('bi-circle');
+    expect(screen.getByLabelText('Step 1 icon')).toHaveClass('bi-clock');
     expect(screen.getByLabelText('Step 2 icon')).toHaveClass('bi-check-circle');
     expect(screen.getByLabelText('Step 3 icon')).toHaveClass('bi-exclamation-circle');
     expect(screen.getByLabelText('Step 3 icon')).toHaveClass('text-danger');

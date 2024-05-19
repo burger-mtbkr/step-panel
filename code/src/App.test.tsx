@@ -37,7 +37,7 @@ describe('App Component', () => {
     const resetButton = screen.getByText('Reset Steps');
     fireEvent.click(resetButton);
     const step1Icon = screen.getByLabelText('Step 1 icon');
-    expect(step1Icon).toHaveClass('bi-circle');
+    expect(step1Icon).toHaveClass('bi-clock');
     const step1Label = screen.getByText('Step 1');
     expect(step1Label).not.toHaveClass('text-danger');
   });

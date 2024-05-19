@@ -4,15 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
-const initialSteps: Step[] = Array.from({ length: 13 }, (_, i) => ({
-  id: `step${i + 1}`,
-  icon: 'bi bi-circle',
-  label: `Step ${i + 1}`,
-  title: `Title for Step ${i + 1}`,
-  hasError: false,
-  isComplete: false,
-  group: `Group ${Math.ceil((i + 1) / 3)}`, // Assign groups
-}));
+const initialSteps: Step[] = [
+  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Title for Step 1', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Title for Step 2', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Title for Step 3', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step4', icon: 'bi bi-circle', label: 'Step 4', title: 'Title for Step 4', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step5', icon: 'bi bi-circle', label: 'Step 5', title: 'Title for Step 5', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step6', icon: 'bi bi-circle', label: 'Step 6', title: 'Title for Step 6', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step7', icon: 'bi bi-circle', label: 'Step 7', title: 'Title for Step 7', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step8', icon: 'bi bi-circle', label: 'Step 8', title: 'Title for Step 8', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step9', icon: 'bi bi-circle', label: 'Step 9', title: 'Title for Step 9', hasError: false, isComplete: false, group: 'Group 3' },
+];
 
 const App: React.FC = () => {
   const [steps, setSteps] = useState<Step[]>(initialSteps);

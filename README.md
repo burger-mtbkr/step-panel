@@ -38,9 +38,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const steps: Step[] = [
-  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Introduction', hasError: false, isComplete: false },
-  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: false },
-  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Confirmation', hasError: false, isComplete: false },
+  { id: 'step1', icon: 'bi bi-clock', label: 'Step 1', title: 'Introduction', hasError: false, isComplete: false },
+  { id: 'step2', icon: 'bi bi-clock', label: 'Step 2', title: 'Personal Info', hasError: false, isComplete: false },
+  { id: 'step3', icon: 'bi bi-clock', label: 'Step 3', title: 'Confirmation', hasError: false, isComplete: false },
 ];
 
 const App = () => {
