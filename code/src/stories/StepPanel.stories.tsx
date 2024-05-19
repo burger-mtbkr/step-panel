@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import StepPanel, { StepPanelProps, Step } from '../components/StepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './StepPanel.css';
+import '../components/StepPanel.css';
 
 const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   id: `step${i + 1}`,
