@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './StepPanel.css';
 
@@ -33,6 +33,15 @@ const StepPanel: React.FC<StepPanelProps> = ({
   overallStatusIcon,
   overallTitle,
 }) => {
+  const [currentActiveStepId, setCurrentActiveStepId] = useState(activeStepId);
+
+  const handleStepClick = (id: string) => {
+    setCurrentActiveStepId(id);
+    if (onStepClick) {
+      onStepClick(id);
+    }
+  };
+
   const groupedSteps = steps.reduce((acc, step) => {
     if (!acc[step.group]) acc[step.group] = [];
     acc[step.group].push(step);
@@ -77,8 +86,8 @@ const StepPanel: React.FC<StepPanelProps> = ({
                   return (
                     <ListGroup.Item
                       key={step.id}
-                      onClick={() => onStepClick && onStepClick(step.id)}
-                      className={`step-item ${step.id === activeStepId ? 'active-step' : ''}`}
+                      onClick={() => handleStepClick(step.id)}
+                      className={`step-item ${step.id === currentActiveStepId ? 'active-step' : ''}`}
                       title={step.title}
                       style={{ cursor: 'pointer' }}
                     >

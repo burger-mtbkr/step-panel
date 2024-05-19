@@ -1,5 +1,6 @@
 .step-indicator {
     background: none;
+    /* Remove background */
     border: none;
 }
 
@@ -15,6 +16,8 @@
 
 .step-indicator.vertical.collapsed {
     width: 50px;
+    background: none;
+    /* Ensure no background when collapsed */
 }
 
 .step-indicator.horizontal {
@@ -42,6 +45,7 @@
     align-items: center;
     gap: 10px;
     color: #5d6f6c;
+    margin-left: 0px;
 }
 
 .overall-title.hidden {
@@ -65,13 +69,15 @@
 }
 
 .active-step {
-    background-color: rgb(236, 236, 236);
-    border-color: rgb(236, 236, 236);
+    background-color: rgb(236, 236, 236) !important;
+    border-color: rgb(236, 236, 236) !important;;
 }
 
 .group-title {
+    font-weight: bold;
     color: #5d6f6c;
     margin-left: 10px;
+    /* Ensure alignment */
     font-size: 14px;
 }
 

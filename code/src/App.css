@@ -1,10 +1,10 @@
-/* App.css */
+App.css
 .app-container {
   display: flex;
   height: 100vh;
 }
 
-.step-indicator-container {
+/* .step-indicator-container {
   display: flex;
   flex-direction: column;
   transition: width 0.3s;
@@ -18,14 +18,13 @@
   width: 250px;
   height: 100%;
   transition: width 0.3s;
-}
+} */
 
-.step-indicator-container.collapsed .step-indicator {
+/* .step-indicator-container.collapsed .step-indicator {
   width: 50px;
-  background-color: lightgrey;
-}
+} */
 
-.toggle-button {
+/* .toggle-button {
   background: none;
   border: none;
   font-size: 20px;
@@ -39,7 +38,7 @@
   right: 10px;
   z-index: 1;
   color: lightgrey;
-}
+} */
 
 .content {
   flex: 1;
@@ -48,7 +47,7 @@
 }
 
 .step-indicator-container+.content {
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 .step-indicator-container.collapsed+.content {
