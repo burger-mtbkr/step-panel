@@ -11,13 +11,17 @@ const initialSteps: Step[] = Array.from({ length: 13 }, (_, i) => ({
   title: `Title for Step ${i + 1}`,
   hasError: false,
   isComplete: false,
-  group: `Group ${Math.ceil((i + 1) / 2)}`, // Assign groups
+  group: `Group ${Math.ceil((i + 1) / 3)}`, // Assign groups
 }));
 
 const App: React.FC = () => {
   const [steps, setSteps] = useState<Step[]>(initialSteps);
-  const [activeStepId, setActiveStepId] = useState<string | undefined>('step1');
+  const [activeStepId, setActiveStepId] = useState<string>('step1');
   const [collapsed, setCollapsed] = useState(false);
+
+  const handleStepClick = (id: string) => {
+    setActiveStepId(id);
+  };
 
   const nextStep = () => {
     const currentIndex = steps.findIndex(step => step.id === activeStepId);
@@ -52,7 +56,7 @@ const App: React.FC = () => {
   };
 
   const clearSelectedSteps = () => {
-    setActiveStepId(undefined);
+    setActiveStepId('');
   };
 
   const toggleCollapsed = () => {
@@ -65,7 +69,7 @@ const App: React.FC = () => {
         <StepPanel
           steps={steps}
           activeStepId={activeStepId}
-          onStepClick={setActiveStepId}
+          onStepClick={handleStepClick}
           orientation="vertical"
           collapsed={collapsed}
           onToggleCollapse={toggleCollapsed}
@@ -75,8 +79,8 @@ const App: React.FC = () => {
       </div>
       <div className={`content ${collapsed ? 'collapsed' : ''}`}>
         <button onClick={nextStep}>Next Step</button>
-        <button onClick={() => setStepDone(activeStepId!)}>Set Step Done</button>
-        <button onClick={() => setStepError(activeStepId!)}>Set Step Error</button>
+        <button onClick={() => setStepDone(activeStepId)}>Set Step Done</button>
+        <button onClick={() => setStepError(activeStepId)}>Set Step Error</button>
         <button onClick={resetSteps}>Reset Steps</button>
         <button onClick={clearSelectedSteps}>Clear Selected Step</button>
         <button onClick={toggleCollapsed}>Toggle Panel</button>

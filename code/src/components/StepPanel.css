@@ -1,11 +1,10 @@
 .step-indicator {
-    /* No background and borders */
     background: none;
     border: none;
 }
 
 .step-indicator.vertical {
-    width: 250px;
+    width: 200px;
     position: absolute;
     left: 0;
     top: 0;
@@ -23,10 +22,10 @@
     display: flex;
 }
 
-.toggle-container {
+.header-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 10px;
 }
 
@@ -45,8 +44,15 @@
     color: #5d6f6c;
 }
 
+.overall-title.hidden {
+    display: none;
+}
+
+.step-list-container {
+    width: 100%;
+}
+
 .step-list {
-    padding-top: 30px;
     width: 100%;
 }
 
@@ -54,6 +60,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    border: none;
     color: #5d6f6c;
 }
 
@@ -63,11 +70,16 @@
 }
 
 .group-title {
-    font-weight: bold;
     color: #5d6f6c;
-    margin-left: 20px;
+    margin-left: 10px;
+    font-size: 14px;
 }
 
 .text-danger {
     color: red;
+}
+
+.step-label {
+    font-size: 14px;
+    color: #5d6f6c;
 }
