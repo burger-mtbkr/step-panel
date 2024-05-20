@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './form-step-panel.css';
 
 export interface Step {
   id: string;
   icon: string;
-  label: string;
+  content: string | ReactNode;
   title: string;
   hasError: boolean;
   isComplete?: boolean;
@@ -23,7 +23,7 @@ export interface FormStepPanelProps {
   overallTitle: string;
 }
 
-const FormStepPanel: React.FC<FormStepPanelProps> = ({
+const StepPanel: React.FC<FormStepPanelProps> = ({
   steps,
   activeStepId,
   onStepClick,
@@ -95,8 +95,9 @@ const FormStepPanel: React.FC<FormStepPanelProps> = ({
                       title={step.title}
                       style={{ cursor: 'pointer' }}
                     >
-                      <i className={iconClass} aria-label={`${step.label} icon`} />
-                      <span className={`${step.hasError ? 'text-danger' : ''} step-label`}>{step.label}</span>
+                      <i className={iconClass} aria-label={`${step.content} icon`} />
+                     { typeof step.content === 'string' && <span className={`${step.hasError ? 'text-danger' : ''} step-label`}>{step.content}</span>}
+                     { React.isValidElement(step.content) && <span className={`${step.hasError ? 'text-danger' : ''} step-label`}>{step.content}</span>}
                     </ListGroup.Item>
                   );
                 })}
@@ -109,4 +110,4 @@ const FormStepPanel: React.FC<FormStepPanelProps> = ({
   );
 };
 
-export default FormStepPanel;
+export default StepPanel;

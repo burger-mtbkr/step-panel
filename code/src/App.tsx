@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import FormStepPanel, { Step } from './components/form-step-panel';
+import StepPanel, { Step } from './components/form-step-panel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
+const MyComponent = () =>{
+
+  return (<div>
+<span>This is a node</span>
+<br/>
+<span>it is cool</span>
+  </div>)
+}
+
 const initialSteps: Step[] = [
-  { id: 'step1', icon: 'bi bi-circle', label: 'Step 1', title: 'Title for Step 1', hasError: false, isComplete: false, group: 'Group 1' },
-  { id: 'step2', icon: 'bi bi-circle', label: 'Step 2', title: 'Title for Step 2', hasError: false, isComplete: false, group: 'Group 1' },
-  { id: 'step3', icon: 'bi bi-circle', label: 'Step 3', title: 'Title for Step 3', hasError: false, isComplete: false, group: 'Group 2' },
-  { id: 'step4', icon: 'bi bi-circle', label: 'Step 4', title: 'Title for Step 4', hasError: false, isComplete: false, group: 'Group 2' },
-  { id: 'step5', icon: 'bi bi-circle', label: 'Step 5', title: 'Title for Step 5', hasError: false, isComplete: false, group: 'Group 3' },
-  { id: 'step6', icon: 'bi bi-circle', label: 'Step 6', title: 'Title for Step 6', hasError: false, isComplete: false, group: 'Group 3' },
-  { id: 'step7', icon: 'bi bi-circle', label: 'Step 7', title: 'Title for Step 7', hasError: false, isComplete: false, group: 'Group 3' },
-  { id: 'step8', icon: 'bi bi-circle', label: 'Step 8', title: 'Title for Step 8', hasError: false, isComplete: false, group: 'Group 3' },
-  { id: 'step9', icon: 'bi bi-circle', label: 'Step 9', title: 'Title for Step 9', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step1', icon: 'bi bi-circle', content: 'Step 1', title: 'Title for Step 1', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step2', icon: 'bi bi-circle', content: 'Step 2', title: 'Title for Step 2', hasError: false, isComplete: false, group: 'Group 1' },
+  { id: 'step3', icon: 'bi bi-circle', content: 'Step 3', title: 'Title for Step 3', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step4', icon: 'bi bi-circle', content: 'Step 4', title: 'Title for Step 4', hasError: false, isComplete: false, group: 'Group 2' },
+  { id: 'step5', icon: 'bi bi-circle', content: 'Step 5', title: 'Title for Step 5', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step6', icon: 'bi bi-circle', content: 'Step 6', title: 'Title for Step 6', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step7', icon: 'bi bi-circle', content: 'Step 7', title: 'Title for Step 7', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step8', icon: 'bi bi-circle', content: 'Step 8', title: 'Title for Step 8', hasError: false, isComplete: false, group: 'Group 3' },
+  { id: 'step9', icon: 'bi bi-circle', content: <MyComponent />, title: 'Title for Step 9', hasError: false, isComplete: false, group: 'Group 3' },
 ];
 
 const App: React.FC = () => {
@@ -68,7 +77,7 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       <div className={`step-indicator-container ${collapsed ? 'collapsed' : ''}`}>
-        <FormStepPanel
+        <StepPanel
           steps={steps}
           activeStepId={activeStepId}
           onStepClick={handleStepClick}
@@ -76,7 +85,7 @@ const App: React.FC = () => {
           collapsed={collapsed}
           onToggleCollapse={toggleCollapsed}
           overallStatusIcon="bi-clock"
-          overallTitle="The loan"
+          overallTitle="The header"
         />
       </div>
       <div className={`content ${collapsed ? 'collapsed' : ''}`}>

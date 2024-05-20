@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import FormStepPanel, { FormStepPanelProps, Step } from '../components/form-step-panel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import '../components/FormStepPanel.css';
+import '../components/form-step-panel.css';
 
 export const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   id: `step${i + 1}`,
   icon: 'bi bi-clock',
-  label: `Step ${i + 1}`,
+  content: `Step ${i + 1}`,
   title: `Title for Step ${i + 1}`,
   hasError: false,
   isComplete: false,
