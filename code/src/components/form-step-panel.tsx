@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
-import './StepPanel.css';
+import './form-step-panel.css';
 
 export interface Step {
   id: string;
@@ -12,7 +12,7 @@ export interface Step {
   group: string;
 }
 
-export interface StepPanelProps {
+export interface FormStepPanelProps {
   steps: Step[];
   activeStepId?: string;
   onStepClick?: (id: string) => void;
@@ -23,7 +23,7 @@ export interface StepPanelProps {
   overallTitle: string;
 }
 
-const StepPanel: React.FC<StepPanelProps> = ({
+const FormStepPanel: React.FC<FormStepPanelProps> = ({
   steps,
   activeStepId,
   onStepClick,
@@ -109,4 +109,4 @@ const StepPanel: React.FC<StepPanelProps> = ({
   );
 };
 
-export default StepPanel;
+export default FormStepPanel;
