@@ -7,7 +7,7 @@ import '../components/FormStepPanel.css';
 export const steps: Step[] = Array.from({ length: 5 }, (_, i) => ({
   id: `step${i + 1}`,
   icon: 'bi bi-clock',
-  label: `Step ${i + 1}`,
+  content: `Step ${i + 1}`,
   title: `Title for Step ${i + 1}`,
   hasError: false,
   isComplete: false,
