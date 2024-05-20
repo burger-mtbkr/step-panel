@@ -1,6 +1,6 @@
-# StepPanel Component
+# FormStepPanel Component
 
-The `StepPanel` component is a versatile React component designed to act as a step or stage indicator for different sections of an online application form. It supports both vertical and horizontal orientations and provides functionality to mark steps as complete or with errors. The component is highly customizable and can be used in various scenarios.
+The `FormStepPanel` component is a versatile React component designed to act as a step or stage indicator for different sections of an online application form. It supports both vertical and horizontal orientations and provides functionality to mark steps as complete or with errors. The component is highly customizable and can be used in various scenarios.
 
 ## Screenshots
 
@@ -20,7 +20,7 @@ The `StepPanel` component is a versatile React component designed to act as a st
 
 ## Installation
 
-To install the `StepPanel` component, you can add it to your project by copying the component files into your project directory. Ensure you have the necessary dependencies installed:
+To install the `FormStepPanel` component, you can add it to your project by copying the component files into your project directory. Ensure you have the necessary dependencies installed:
 
 ```
 npm install react react-bootstrap bootstrap bootstrap-icons
@@ -29,11 +29,11 @@ yarn add react react-bootstrap bootstrap bootstrap-icons
 ```
 ## Usage
 
-Here's an example of how to use the StepPanel component in your application:
+Here's an example of how to use the FormStepPanel component in your application:
 
 ```
 import React, { useState } from 'react';
-import StepPanel, { Step } from './components/StepPanel';
+import FormStepPanel, { Step } from './components/FormStepPanel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -63,7 +63,7 @@ const App = () => {
 
   return (
     <div>
-      <StepPanel
+      <FormStepPanel
         steps={steps}
         activeStepId={activeStepId}
         onStepClick={handleStepClick}
@@ -92,7 +92,7 @@ Each step object in the steps array should have the following structure:
   - `isComplete` (boolean): Indicates if the step is complete.
   - `group` (string): Group name for the step.
 
-**StepPanel Props**
+**FormStepPanel Props**
 
   - `steps` (Step[]): Array of step objects.
   - `activeStepId` (string | undefined): ID of the currently active step.
@@ -103,7 +103,7 @@ Each step object in the steps array should have the following structure:
 
 ## Storybook
 
-The StepPanel component is also configured to be used with Storybook for interactive development and testing. To start Storybook, run:
+The FormStepPanel component is also configured to be used with Storybook for interactive development and testing. To start Storybook, run:
 
 ```
 npm run storybook

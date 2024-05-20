@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StepPanel, { Step } from './components/StepPanel';
+import FormStepPanel, { Step } from './components/form-step-panel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
@@ -68,7 +68,7 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       <div className={`step-indicator-container ${collapsed ? 'collapsed' : ''}`}>
-        <StepPanel
+        <FormStepPanel
           steps={steps}
           activeStepId={activeStepId}
           onStepClick={handleStepClick}
